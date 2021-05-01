@@ -1,0 +1,24 @@
+{
+  "name": "CLI-64-TypeRacer",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CLI-64/CLI-64-TypeRacer.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CLI-64/CLI-64-TypeRacer/issues"
+  },
+  "homepage": "https://github.com/CLI-64/CLI-64-TypeRacer#readme",
+  "dependencies": {
+    "index.js": "^0.0.3",
+    "socket.io-client": "^4.0.1"
+  }
+}
