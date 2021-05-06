@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/CLI-64/CLI-64-TypeRacer#readme",
   "dependencies": {
+    "chalk": "^4.1.1",
     "index.js": "^0.0.3",
     "socket.io-client": "^4.0.1"
   }
