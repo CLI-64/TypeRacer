@@ -98,12 +98,7 @@ function startGame(sentence) {
     socket.emit('play', `${sentence}`)
     socket.emit('play', '===========================')
   }, 4000)
-  // socket.emit('play', '3')
-  // socket.emit('play', '2')
-  // socket.emit('play', '1')
-  // socket.emit('play', '===========================')
-  // socket.emit('play', `${sentence}`)
-  // socket.emit('play', '===========================')
+
 }
 
 function nextQuestion(sentence) {
