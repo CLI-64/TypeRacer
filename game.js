@@ -133,6 +133,7 @@ function nextQuestion(sentence) {
 }
 
 function openingImage() {
+  socket.emit('clear', 'x')
   socket.emit('play', '___________                   __________                            ')
   socket.emit('play', '\\__   ___/__.__.______   ____\\______   \\_____    ____  ___________ ')
   socket.emit('play', ' |    | <   |  |\\____ \\_/ __ \\|       _/\\__  \\_/ ___\\/ __ \\_  __ \\')
@@ -159,4 +160,6 @@ function openingImage() {
   socket.emit('play', '/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/ /')
   socket.emit('play', '/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/ /')
   socket.emit('play', '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
+  socket.emit('play', `                                     `)
+  socket.emit('play', `                                     `)
 }
