@@ -28,13 +28,15 @@ const players = {
   // this is where players are listed
 }
 
-socket.on('joined', payload => {
+socket.on('newPlayer', payload => {
   // creates a new player
   players[payload] = new Player(payload)
 })
 
 socket.on('connect', payload => {
-  console.log('Cartridge plugged in!')
+  openingImage()
+  socket.emit('play', 'TypeRacer Cartridge plugged in! Type \'start\' when you are ready to play!')
+  socket.emit('insert cartridge')
 })
 
 // after pressing enter
@@ -49,12 +51,12 @@ socket.on('play', payload => {
       // stop game and display winner
       winner.push('Someone won')
       if (winner.length === 1) {
-        // reset sentence
+        // Reset sentence
         currentSentence = sentences[Math.floor(Math.random() * sentences.length)]
         Object.keys(players).forEach(value => {
           players[value].sentence = currentSentence;
         })
-        // increment score
+        // Increment score
         players[payload.playerName].score++
         socket.emit('play', `${payload.playerName} WON THE ROUND!!!`)
         if (players[payload.playerName].score === 3) {
@@ -69,6 +71,10 @@ socket.on('play', payload => {
       }
     }
   }
+})
+
+socket.on('disconnect', payload => {
+  socket.emit('clear', 'x')
 })
 
 socket.on('runGame', payload => {
@@ -102,6 +108,7 @@ function startGame(sentence) {
 }
 
 function nextQuestion(sentence) {
+  console.log('next sentence is: ', sentence)
   setTimeout(() => {
     socket.emit('clear')
   }, 3000)
@@ -123,4 +130,33 @@ function nextQuestion(sentence) {
     socket.emit('play', sentence)
     socket.emit('play', '===========================')
   }, 7000)
+}
+
+function openingImage() {
+  socket.emit('play', '___________                   __________                            ')
+  socket.emit('play', '\\__   ___/__.__.______   ____\\______   \\_____    ____  ___________ ')
+  socket.emit('play', ' |    | <   |  |\\____ \\_/ __ \\|       _/\\__  \\_/ ___\\/ __ \\_  __ \\')
+  socket.emit('play', ' |    |  \\___  ||  |_> >  ___/|    |   \\/ __  \\\  \\__\\  ___/|  | \\/')
+  socket.emit('play', ' |____|  / ____||   __/ \___  >____|_  /(____  /\___  >___  > __|   ')
+  socket.emit('play', '         \\/     |__|       \\/       \\/      \\/    \\/    \\/     ')
+  socket.emit('play', ',---------------------------,')
+  socket.emit('play', '|  /---------------------\  |')
+  socket.emit('play', '| |                       | |')
+  socket.emit('play', '| |       `o##o>          | |')
+  socket.emit('play', '| |               `o##o>  | |')
+  socket.emit('play', '| | `o##o>                | |')
+  socket.emit('play', '| |          `o##o>       | |')
+  socket.emit('play', '|  \_____________________/  |')
+  socket.emit('play', '|___________________________|')
+  socket.emit('play', ',---\_____     []     _______/------,')
+  socket.emit('play', '/         /______________\           /|')
+  socket.emit('play', '/___________________________________ /  | ___')
+  socket.emit('play', '|                                   |   |    )')
+  socket.emit('play', '|  _ _ _                 [-------]  |   |   (')
+  socket.emit('play', '|  o o o                 [-------]  |  /    _)_')
+  socket.emit('play', '|__________________________________ |/     /  /')
+  socket.emit('play', '/-------------------------------------/|      ( )/')
+  socket.emit('play', '/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/ /')
+  socket.emit('play', '/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/ /')
+  socket.emit('play', '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
 }
