@@ -4,9 +4,9 @@ const io = require('socket.io-client');
 const host = 'http://localhost:3333';
 const socket = io.connect(host);
 const chalk = require('chalk')
-const Player = require('./newplayer.js')
+const Player = require('./src/newplayer.js')
 
-let { sentences, compliments } = require('./scripts/listofstrings.js')
+let { sentences, compliments } = require('./src/scripts/listofstrings.js')
 let currentSentence;
 let winner = [];
 let compliment;
@@ -103,7 +103,7 @@ function playAgain() {
 
 function openingImage() {
   socket.emit('clear', 'x')
-  socket.emit('play', '               ___________                   __________                            ')
+  socket.emit('play', '              ___________                   __________                            ')
   socket.emit('play', '               \\__   ___/__.__.______   ____\\______   \\_____    ____  ___________ ')
   socket.emit('play', '                |    | <   |  |\\____ \\_/ __ \\|       _/\\__  \\_/ ___\\/ __ \\_  __ \\')
   socket.emit('play', '                |    |  \\___  ||  |_> >  ___/|    |   \\/ __  \\\  \\__\\  ___/|  | \\/')
